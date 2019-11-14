@@ -18,4 +18,4 @@ VOLUME ["/conf", "/downloads"]
 
 EXPOSE 6800
 
-ENTRYPOINT ["entry.sh"]
+ENTRYPOINT ["/entry.sh"]
