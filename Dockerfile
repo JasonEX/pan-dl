@@ -6,12 +6,16 @@ ENV RPC_SECRET ""
 ENV UID 65534
 ENV GID 65534
 
-RUN adduser -D www-data
-
-RUN mkdir /downloads
+RUN adduser -D www-data && mkdir /conf && mkdir /downloads \
+    && touch /conf/dht.dat && touch /conf/dht6.dat && touch /conf/aria2.session
 
 COPY aux-files/entry.sh /entry.sh
+COPY aux-files/aria2.conf /conf
 
 RUN chmod +x /entry.sh
+
+VOLUME ["/conf", "/downloads"]
+
+EXPOSE 6800
 
 ENTRYPOINT ["entry.sh"]
