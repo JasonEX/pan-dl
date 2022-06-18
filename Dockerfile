@@ -6,7 +6,8 @@ ENV RPC_SECRET ""
 ENV UID 65534
 ENV GID 65534
 
-RUN adduser -D www-data && mkdir /conf && mkdir /downloads \
+RUN groupadd -f www-data && useradd -M www-data -g www-data \
+    && mkdir /conf && mkdir /downloads \
     && touch /conf/dht.dat && touch /conf/dht6.dat && touch /conf/aria2.session
 
 COPY aux-files/entry.sh /entry.sh
